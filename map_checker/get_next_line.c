@@ -52,6 +52,81 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
+int	ft_countword(char *line)
+{
+	int	i;
+	int	c;
+
+	i = 0;
+	c = 0;
+	while (line[i] != 0)
+	{
+		if (ft_isdigit(line[i]) == 1 && (line[i+1] == 32 || line[i+1] == '\n' || line[i+1] == 0))
+			c++;
+		i++;
+	}
+	return (c);
+}
+
+int	ft_atoi(char *str)
+{
+	static int	i;
+	int	signe;
+	int	result;
+
+	signe = 1;
+	result = 0;
+	while ((str[i] < '0' || str[i] > '9') && (str[i] != '-' && str[i] != '+'))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			signe = -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		result = result * 10 + (str[i] - '0');
+		i++;
+	}
+	return (result * signe);
+}
+
+int	*ft_split(char *line)
+{
+	int	i;
+	int	countnumbers;
+	int	*numbers_of_line;
+
+	countnumbers = ft_countword(line);
+	numbers_of_line = malloc(sizeof(int) * (countnumbers));
+	if (numbers_of_line == NULL)
+		return (NULL);
+	i = 0;
+	while (i < countnumbers)
+	{
+		numbers_of_line[i] = ft_atoi(line);
+		i++;
+	}
+	printf("||%d||\n", countnumbers);
+	return (numbers_of_line);
+}
+
+/*
+void	*ft_free_map (char **map)
+{
+	int i;
+
+	i = 0;
+	while (map != NULL && map[i] != NULL)
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map);
+	return (NULL);
+}
+
 char	**ft_read_map(int fd)
 {
 	int		i;
@@ -80,32 +155,30 @@ char	**ft_read_map(int fd)
 	map[i] = NULL;
 	return (map);
 }
-
-/*
-int	**ft_split (int fd)
-{
-	char	**lines;
-	int	line_numbers;
-	int	**map;
-
-	lines = ft_
-
 */
 int main ()
 {
-	char	**map;
+/*	char	**map;
 	int	fd;
 	int	i = 0 ;
 	fd = open("txt", O_RDWR);
 
-	map = ft_read_map(fd);
+	map = ft_read_map(-1);
 	while (map[i] != NULL)
 	{
 		printf("%s", map[i]);
 		free(map[i]);
 		i++;
 	}
-	free(map);
+	free(map);*/
+
+	int	*array = ft_split("    1kfgfasfakfaffa 12 aff fjfas ff-1 -12 1    i12iii 123 ====  -1 ojjll-12 //  -123   0");
+	int	nbr = 0 ;
+	while (array[nbr] != 0)
+	{
+		printf("%d\n", array[nbr]);
+		nbr++;
+	}
 }
 
 
