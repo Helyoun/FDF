@@ -6,7 +6,7 @@
 /*   By: hamel-yo <hamel-yo@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 06:01:28 by hamel-yo          #+#    #+#             */
-/*   Updated: 2025/02/18 10:13:34 by hamel-yo         ###   ########.fr       */
+/*   Updated: 2025/02/19 18:32:45 by hamel-yo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,28 +38,39 @@ int	ft_countword(char *str)
 	return (c);
 }
 
-int	*ft_split(int fd)
+int	*ft_split(char *line, int *countnumbers, t_list **list)
 {
 	int	i;
 	int	j;
-	char	*line;
-	int	countnumbers;
 	int	*numbers_of_line;
 
-	line = get_next_line(fd);
-	if (line == NULL)
-		return (NULL);
-	countnumbers = ft_countword(str);
-	numbers_of_line = malloc(sizeof(int) * (countnumbers));
+	*countnumbers = ft_countword(line);
+	numbers_of_line = malloc(sizeof(int) * (*countnumbers));
 	if (numbers_of_line == NULL)
-		return (NULL);
+		ft_free_list(list, &line);
 	i = 0;
 	j = 0;
-	while (i < countnumbers)
+	while (i < *countnumbers)
 	{
-		numbers_of_line[i] = ft_atoi(str, &j);
+		numbers_of_line[i] = ft_atoi(line, &j);
 		i++;
 	}
 	free(line);
 	return (numbers_of_line);
+}
+
+t_list	*ft_make_node(int fd, t_list **list);
+{
+	t_list	*node;
+	char	*line;
+
+	node = malloc(sizeof(t_list));
+	if (node == NULL)
+		ft_free_list(list, NULL);
+	line = get_next_line(fd, list);
+	if (line == NULL)
+		return (NULL);
+	node->array = ft_split(line, node.size, list);
+	node->next = NULL;
+	return(node);
 }

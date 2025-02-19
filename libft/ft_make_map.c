@@ -6,7 +6,7 @@
 /*   By: hamel-yo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 10:02:02 by hamel-yo          #+#    #+#             */
-/*   Updated: 2025/02/18 10:25:42 by hamel-yo         ###   ########.fr       */
+/*   Updated: 2025/02/19 01:28:55 by hamel-yo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	**ft_make_map(int fd)
 	i = 0;
 	while ((array = ft_split(fd)) != NULL)
 	{
-		tmp = malloc(sizeof(int *) *(i +2));
+		tmp = malloc(sizeof(int *) *(i +2)); 
 		j = 0;
 		while (j < i)
 		{

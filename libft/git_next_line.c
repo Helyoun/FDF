@@ -6,13 +6,13 @@
 /*   By: hamel-yo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 01:28:16 by hamel-yo          #+#    #+#             */
-/*   Updated: 2025/02/18 01:40:33 by hamel-yo         ###   ########.fr       */
+/*   Updated: 2025/02/19 17:22:34 by hamel-yo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*get_next_line(int fd)
+char	*get_next_line(int fd, t_list **list)
 {
 	char	*line;
 	char	c;
@@ -27,13 +27,10 @@ char	*get_next_line(int fd)
 	{
 		read_byte = read(fd, &c, 1);
 		if (read_byte == -1)
-		{
-			free(line);
-			return (NULL);
-		}
+			ft_free_list(list, &line);
 		else if (read_byte == 0)
 			return (line);
-		line = ft_strjoin(line, c, line_size);
+		line = ft_strjoin(line, c, line_size, list);
 		if (c == '\n' || line == NULL)
 			break ;
 		line_size++;
