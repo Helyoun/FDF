@@ -61,7 +61,7 @@ int	ft_countword(char *line)
 	c = 0;
 	while (line[i] != 0)
 	{
-		if (ft_isdigit(line[i]) == 1 && (line[i+1] == 32 || line[i+1] == '\n' || line[i+1] == 0))
+		if ((ft_isdigit(line[i]) == 1 || ft_isoperetor(line[i] == 1) && (line[i+1] == 32 || line[i+1] == '\n' || line[i+1] == 0))
 			c++;
 		i++;
 	}
