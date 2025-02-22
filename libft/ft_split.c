@@ -6,7 +6,7 @@
 /*   By: hamel-yo <hamel-yo@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 06:01:28 by hamel-yo          #+#    #+#             */
-/*   Updated: 2025/02/19 18:32:45 by hamel-yo         ###   ########.fr       */
+/*   Updated: 2025/02/22 10:42:52 by hamel-yo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	*ft_split(char *line, int *countnumbers, t_list **list)
 	return (numbers_of_line);
 }
 
-t_list	*ft_make_node(int fd, t_list **list);
+t_list	*ft_make_node(int fd, t_list **list)
 {
 	t_list	*node;
 	char	*line;
@@ -70,7 +70,7 @@ t_list	*ft_make_node(int fd, t_list **list);
 	line = get_next_line(fd, list);
 	if (line == NULL)
 		return (NULL);
-	node->array = ft_split(line, node.size, list);
+	node->array = ft_split(line, &node->size, list);
 	node->next = NULL;
 	return(node);
 }

@@ -6,35 +6,34 @@
 /*   By: hamel-yo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 10:02:02 by hamel-yo          #+#    #+#             */
-/*   Updated: 2025/02/19 01:28:55 by hamel-yo         ###   ########.fr       */
+/*   Updated: 2025/02/22 09:59:22 by hamel-yo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	**ft_make_map(int fd)
+t_list	*ft_make_map(int fd)
 {
-	int	**map;
-	int	**tmp;
-	int	*array;
-	int	i;
-	int	j;
+	t_list	*map;
+	t_list	*save;
+	t_list	*tmp;
 
-	i = 0;
-	while ((array = ft_split(fd)) != NULL)
+	map = NULL;
+	while (1)
 	{
-		tmp = malloc(sizeof(int *) *(i +2)); 
-		j = 0;
-		while (j < i)
+		tmp = ft_make_node(fd, &map);
+		if (map == NULL)
 		{
-			tmp[j] = map[j];
-			j++;
+			map = tmp;
+			save = map;
 		}
-		free(map);
-		tmp[j] = array;
-		map = tmp;
-		i++;
+		else
+		{
+			map->next = tmp;
+			map = map->next;
+		}
+		if (tmp == NULL)
+			break ;
 	}
-	map[i] = NULL;
-	return (map);
+	return (save);
 }
