@@ -6,7 +6,7 @@
 /*   By: hamel-yo <hamel-yo@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 06:01:28 by hamel-yo          #+#    #+#             */
-/*   Updated: 2025/02/22 10:42:52 by hamel-yo         ###   ########.fr       */
+/*   Updated: 2025/02/22 23:19:00 by hamel-yo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,14 @@ int	*ft_split(char *line, int *countnumbers, t_list **list)
 	int	*numbers_of_line;
 
 	*countnumbers = ft_countword(line);
+	if (*countnumbers == 0)
+	{
+		free(line);
+		return (NULL);
+	}
 	numbers_of_line = malloc(sizeof(int) * (*countnumbers));
 	if (numbers_of_line == NULL)
-		ft_free_list(list, &line);
+		ft_free_list(list, line);
 	i = 0;
 	j = 0;
 	while (i < *countnumbers)
@@ -69,8 +74,16 @@ t_list	*ft_make_node(int fd, t_list **list)
 		ft_free_list(list, NULL);
 	line = get_next_line(fd, list);
 	if (line == NULL)
+	{
+		free(node);
 		return (NULL);
+	}
 	node->array = ft_split(line, &node->size, list);
+	if (node->array == NULL)
+	{
+		free (node);
+		return (NULL);
+	}
 	node->next = NULL;
 	return(node);
 }
