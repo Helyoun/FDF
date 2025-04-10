@@ -1,41 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_make_map.c                                      :+:      :+:    :+:   */
+/*   ft_open_window.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hamel-yo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/18 10:02:02 by hamel-yo          #+#    #+#             */
-/*   Updated: 2025/04/10 05:06:10 by hamel-yo         ###   ########.fr       */
+/*   Created: 2025/04/10 05:34:00 by hamel-yo          #+#    #+#             */
+/*   Updated: 2025/04/10 05:57:38 by hamel-yo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-t_map	*ft_make_map(int fd, int *rows)
+void	ft_open_window(void **mlx, void	**win. void **img)
 {
-	t_map	*map;
-	t_map	*save;
-	t_map	*tmp;
-
-	map = NULL;
-	*rows = 0;
-	while (1)
+	*mlx = mlx_init();
+	if (*mlx == NULL)
+		return ;
+	*win = mlx_new_window(*mlx, WIDTH, HEIGHT, "FDF");
+	*img = mlx_new_image(*mlx, width, height);
+	if (win == NULL || img == NULL)
 	{
-		tmp = ft_make_node(fd, &map);
-		if (map == NULL)
-		{
-			map = tmp;
-			save = map;
-		}
-		else
-		{
-			map->next = tmp;
-			map = map->next;
-		}
-		if (tmp == NULL)
-			break ;
-		*rows = *rows + 1;
+		win = NULL;
+		img = NULL;
 	}
-	return (save);
 }
+

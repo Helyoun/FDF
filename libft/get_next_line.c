@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   git_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hamel-yo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 01:28:16 by hamel-yo          #+#    #+#             */
-/*   Updated: 2025/02/22 11:16:15 by acennadi         ###   ########.fr       */
+/*   Updated: 2025/04/10 04:53:07 by hamel-yo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../fdf.h"
 
-char	*get_next_line(int fd, t_list **list)
+char	*get_next_line(int fd, t_map **list)
 {
 	char	*line;
 	char	c;

@@ -6,7 +6,7 @@
 /*   By: hamel-yo <hamel-yo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 03:10:43 by hamel-yo          #+#    #+#             */
-/*   Updated: 2025/02/22 11:18:49 by acennadi         ###   ########.fr       */
+/*   Updated: 2025/03/17 21:14:48 by hamel-yo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,13 @@
 
 typedef struct list
 {
-	int	*array;
-	int	size;
+	char	*array;
+	char	size;
 	struct list	*next;
 }	t_list;
 
-t_list	*ft_make_map(int fd);
+t_list	*ft_open_file(char *s, int *rows);
+t_list	*ft_make_map(int fd, int *rows);
 t_list	*ft_make_node(int fd, t_list **list);
 int	ft_atoi(char *str, int *i);
 void	ft_free_list(t_list **list, void *ptr);

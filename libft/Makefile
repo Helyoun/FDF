@@ -2,7 +2,7 @@ CC =  cc
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRC =	ft_atoi.c	ft_free_list.c	ft_isdigit.c	ft_isoprator.c	ft_split.c	ft_strjoin.c	git_next_line.c	ft_make_map.c
+SRC =	ft_atoi.c	ft_free_list.c	ft_isdigit.c	ft_isoprator.c	ft_split.c	ft_strjoin.c	ft_open_file.c	get_next_line.c	ft_make_map.c
 
 SRCB = ft_lstnew_bonus.c ft_lstadd_front_bonus.c \
 	ft_lstsize_bonus.c ft_lstlast_bonus.c \

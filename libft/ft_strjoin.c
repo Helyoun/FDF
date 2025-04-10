@@ -6,13 +6,13 @@
 /*   By: hamel-yo <hamel-yo@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 07:22:13 by hamel-yo          #+#    #+#             */
-/*   Updated: 2025/02/19 18:11:37 by hamel-yo         ###   ########.fr       */
+/*   Updated: 2025/04/10 04:53:33 by hamel-yo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../fdf.h"
 
-char	*ft_strjoin(char *line, char c, int line_size, t_list **list)
+char	*ft_strjoin(char *line, char c, int line_size, t_map **list)
 {
 	char	*str;
 	int		i;

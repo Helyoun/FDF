@@ -6,11 +6,11 @@
 /*   By: hamel-yo <hamel-yo@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 06:01:28 by hamel-yo          #+#    #+#             */
-/*   Updated: 2025/02/22 23:19:00 by hamel-yo         ###   ########.fr       */
+/*   Updated: 2025/04/10 05:02:12 by hamel-yo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../fdf.h"
 
 int	ft_check(int c, int s)
 {
@@ -38,11 +38,11 @@ int	ft_countword(char *str)
 	return (c);
 }
 
-int	*ft_split(char *line, int *countnumbers, t_list **list)
+char	*ft_split(char *line, char *countnumbers, t_map **list)
 {
 	int	i;
 	int	j;
-	int	*numbers_of_line;
+	char	*numbers_of_line;
 
 	*countnumbers = ft_countword(line);
 	if (*countnumbers == 0)
@@ -64,12 +64,12 @@ int	*ft_split(char *line, int *countnumbers, t_list **list)
 	return (numbers_of_line);
 }
 
-t_list	*ft_make_node(int fd, t_list **list)
+t_map	*ft_make_node(int fd, t_map **list)
 {
-	t_list	*node;
+	t_map	*node;
 	char	*line;
 
-	node = malloc(sizeof(t_list));
+	node = malloc(sizeof(t_map));
 	if (node == NULL)
 		ft_free_list(list, NULL);
 	line = get_next_line(fd, list);
@@ -78,8 +78,8 @@ t_list	*ft_make_node(int fd, t_list **list)
 		free(node);
 		return (NULL);
 	}
-	node->array = ft_split(line, &node->size, list);
-	if (node->array == NULL)
+	node->row = ft_split(line, &node->size, list);
+	if (node->row == NULL)
 	{
 		free (node);
 		return (NULL);

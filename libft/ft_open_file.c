@@ -1,41 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_make_map.c                                      :+:      :+:    :+:   */
+/*   ft_open_file.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hamel-yo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/18 10:02:02 by hamel-yo          #+#    #+#             */
-/*   Updated: 2025/04/10 05:06:10 by hamel-yo         ###   ########.fr       */
+/*   Created: 2025/04/09 22:39:02 by hamel-yo          #+#    #+#             */
+/*   Updated: 2025/04/09 22:39:20 by hamel-yo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-t_map	*ft_make_map(int fd, int *rows)
+t_map	*ft_open_file(char *s, int *rows)
 {
-	t_map	*map;
-	t_map	*save;
-	t_map	*tmp;
+	int	fd;
 
-	map = NULL;
-	*rows = 0;
-	while (1)
-	{
-		tmp = ft_make_node(fd, &map);
-		if (map == NULL)
-		{
-			map = tmp;
-			save = map;
-		}
-		else
-		{
-			map->next = tmp;
-			map = map->next;
-		}
-		if (tmp == NULL)
-			break ;
-		*rows = *rows + 1;
-	}
-	return (save);
+	fd = open (s, O_RDWR);
+	if (fd == -1)
+		exit(0);
+	return (ft_make_map(fd, rows));
 }

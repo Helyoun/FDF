@@ -5,35 +5,38 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hamel-yo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/10 05:14:19 by hamel-yo          #+#    #+#             */
-/*   Updated: 2025/04/10 05:31:46 by hamel-yo         ###   ########.fr       */
+/*   Created: 2025/04/08 23:57:49 by hamel-yo          #+#    #+#             */
+/*   Updated: 2025/04/09 18:13:09 by hamel-yo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-int	main(int c, char **v)
+void	isometric(int x, int y, int z, void *init, void *win, int i);
+
+int	main (int c, char **v)
 {
-	t_map	*map;
-	int	rows;
-	char	i;
+	int	z = atoi(v[3]);
+	int	i = atoi(v[1]);
+	int	j = atoi(v[2]);
+	int	al = atoi(v[4]);
 
-	rows = 0;
-	if (c != 2)
-		return (1);
-	map = ft_open_file(v[1], &rows);
-	while (map != NULL)
+	printf("%d %d %d %d\n", i, j, z, al);
+	void	*init;
+	void	*win;
+	init = mlx_init();
+	win = mlx_new_window(init, 1920, 1080, "test");
+	while (j <= 10 && i <= 10 && z <= 10)
 	{
-		i = 0;
-		while (i < map->size)
-		{
-			printf(" %d", map->row[i]);
-			if (map->row[i] < 10)
-				printf(" ");
+		if (i == 5)
+			z = 10;
+		isometric(i, j , z, init , win, al);
+		if (i > 0)
 			i++;
-		}
-		printf("\n");
-		map = map->next;
+		else if (z > 0)
+			z++;
+		else
+			j++;
 	}
-
+	while (1);
 }
