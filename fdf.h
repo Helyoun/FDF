@@ -8,16 +8,16 @@
 #include <stdio.h>
 #include <fcntl.h>
 
-#define WIDTH 1000
-#define HEIGHT 500
+#define WIDTH 1920
+#define HEIGHT 1080
 #define LINE 50
 
-struct	mlx
+typedef struct	mlx
 {
-	void	*mlx;
+	void	*init;
 	void	*win;
 	void	*img;
-};
+}	s_mlx;
 
 struct	point
 {
@@ -33,6 +33,8 @@ typedef struct	map
 	struct map	*next;
 }	t_map;
 
+s_mlx	ft_open_window();
+void	isometric(char x, char y, char z, s_mlx mlx, int i);
 int	ft_strlen(char *s);
 int	ft_strcmp(char *s1, char *s2);
 t_map	*ft_open_file(char *s, int *rows);

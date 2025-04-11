@@ -6,7 +6,7 @@
 /*   By: hamel-yo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 05:14:19 by hamel-yo          #+#    #+#             */
-/*   Updated: 2025/04/11 04:23:42 by hamel-yo         ###   ########.fr       */
+/*   Updated: 2025/04/11 06:15:15 by hamel-yo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,25 @@ int	main(int c, char **v)
 	t_map	*map;
 	int	rows;
 	char	i;
+	char	j;
+	s_mlx	mlx;
 
 	rows = 0;
 	if (c != 2)
 		return (1);
 	map = ft_open_file(v[1], &rows);
+	mlx = ft_open_window();
+	j =  0;
 	while (map != NULL)
 	{
 		i = 0;
 		while (i < map->size)
 		{
-			if (map->row[i] < 10)
-				printf(" ");
-			printf(" %d", map->row[i]);
+			isometric(i, j, map->row[i], mlx, 120);
 			i++;
 		}
-		printf("\n");
 		map = map->next;
+		j++;
 	}
-
+	while (1);
 }
