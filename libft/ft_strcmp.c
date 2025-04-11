@@ -1,39 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hamel-yo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/10 05:14:19 by hamel-yo          #+#    #+#             */
-/*   Updated: 2025/04/11 04:23:42 by hamel-yo         ###   ########.fr       */
+/*   Created: 2025/04/11 03:57:40 by hamel-yo          #+#    #+#             */
+/*   Updated: 2025/04/11 04:07:38 by hamel-yo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-int	main(int c, char **v)
+int	ft_strlen(char *s)
 {
-	t_map	*map;
-	int	rows;
-	char	i;
+	int	i;
 
-	rows = 0;
-	if (c != 2)
-		return (1);
-	map = ft_open_file(v[1], &rows);
-	while (map != NULL)
+	i = 0;
+	while (s[i] != 0)
+		i++;
+	return (i);
+}
+
+int	ft_strcmp(char *s1, char *s2)
+{
+	int	i;
+	int	j;
+
+	i = ft_strlen(s1) -  4;
+	j = 0;
+	while (s1[i] != 0 || s2[j] != 0)
 	{
-		i = 0;
-		while (i < map->size)
-		{
-			if (map->row[i] < 10)
-				printf(" ");
-			printf(" %d", map->row[i]);
-			i++;
-		}
-		printf("\n");
-		map = map->next;
+		if (s1[i] != s2[j])
+			return (s1[i] - s2[j]);
+		i++;
+		j++;
 	}
-
+	return (0);
 }

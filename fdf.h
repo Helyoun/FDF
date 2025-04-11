@@ -33,6 +33,8 @@ typedef struct	map
 	struct map	*next;
 }	t_map;
 
+int	ft_strlen(char *s);
+int	ft_strcmp(char *s1, char *s2);
 t_map	*ft_open_file(char *s, int *rows);
 t_map	*ft_make_map(int fd, int *rows);
 t_map	*ft_make_node(int fd, t_map **list);

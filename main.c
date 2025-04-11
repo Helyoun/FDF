@@ -5,35 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hamel-yo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/10 05:14:19 by hamel-yo          #+#    #+#             */
-/*   Updated: 2025/04/11 04:23:42 by hamel-yo         ###   ########.fr       */
+/*   Created: 2025/04/11 03:40:02 by hamel-yo          #+#    #+#             */
+/*   Updated: 2025/04/11 03:46:32 by hamel-yo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "fdf.c"
 
 int	main(int c, char **v)
 {
-	t_map	*map;
-	int	rows;
-	char	i;
-
-	rows = 0;
-	if (c != 2)
-		return (1);
-	map = ft_open_file(v[1], &rows);
-	while (map != NULL)
-	{
-		i = 0;
-		while (i < map->size)
-		{
-			if (map->row[i] < 10)
-				printf(" ");
-			printf(" %d", map->row[i]);
-			i++;
-		}
-		printf("\n");
-		map = map->next;
-	}
-
-}
+	t_map	
