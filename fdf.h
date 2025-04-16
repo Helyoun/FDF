@@ -12,8 +12,14 @@
 #define HEIGHT 1080
 #define LINE 50
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1337
+# endif
+
 typedef struct	mlx
 {
+	int	height;
+	int	width;
 	void	*init;
 	void	*win;
 	void	*img;
@@ -28,24 +34,23 @@ struct	point
 
 typedef struct	map
 {
-	char	*row;
-	char	size;
-	struct map	*next;
+	short	*row;
+	short	size;
+	struct	map	*next;
 }	t_map;
 
+//int     ft_strlen(char *s);
+char    *get_next_line(int fd);
+//void    *ft_free(char *line);
 s_mlx	ft_open_window();
 void	isometric(char x, char y, char z, s_mlx mlx, int i);
-int	ft_strlen(char *s);
 int	ft_strcmp(char *s1, char *s2);
-t_map	*ft_open_file(char *s, int *rows);
-t_map	*ft_make_map(int fd, int *rows);
-t_map	*ft_make_node(int fd, t_map **list);
-int	ft_atoi(char *str, int *i);
-void	ft_free_list(t_map **list, void *ptr);
+//t_map	*ft_open_file(char *s, int *rows);
+//t_map	*ft_make_map(int fd, int *rows);
+//t_map	*ft_make_node(int fd, t_map **list);
+//void	ft_free_list(t_map **list, void *ptr);
 int	ft_isdigit(int c);
 int	ft_isoprator(int c);
-char	*ft_strjoin(char *line, char c, int line_size, t_map **list);
-char	*get_next_line(int fd, t_map **list);
 
 
 #endif

@@ -1,40 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hamel-yo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/11 03:57:40 by hamel-yo          #+#    #+#             */
-/*   Updated: 2025/04/11 04:07:38 by hamel-yo         ###   ########.fr       */
+/*   Created: 2025/04/10 05:14:19 by hamel-yo          #+#    #+#             */
+/*   Updated: 2025/04/11 21:44:02 by hamel-yo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "fdf.h"
 
-int	ft_strlen(char *s)
+int	main(int c, char **v)
 {
-	int	i;
+	t_map	*map;
+	int	rows;
+	char	i;
+	char	j;
+	s_mlx	mlx;
 
-	i = 0;
-	while (s[i] != 0)
-		i++;
-	return (i);
-}
-
-int	ft_strcmp(char *s1, char *s2)
-{
-	int	i;
-	int	j;
-
-	i = ft_strlen(s1) -  4;
-	j = 0;
-	while (s1[i] != 0 || s2[j] != 0)
+	rows = 0;
+	if (c != 2)
+		return (1);
+	map = ft_open_file(v[1], &rows);
+	printf("%d\n", rows);
+	mlx = ft_open_window();
+	j =  0;
+	while (map != NULL)
 	{
-		if (s1[i] != s2[j])
-			return (s1[i] - s2[j]);
-		i++;
+		i = 0;
+		while (i < map->size)
+		{
+			isometric(i, j, map->row[i], mlx, 120);//printf("%d ", i);
+			i++;
+		}
+		map = map->next;
 		j++;
 	}
-	return (0);
+	while (1);
 }
