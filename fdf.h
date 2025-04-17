@@ -22,20 +22,19 @@ typedef struct	mlx
 	int	width;
 	void	*init;
 	void	*win;
-	void	*img;
 }	s_mlx;
 
-struct	point
+typedef struct	point
 {
-	int	x;
-	int	y;
-	void	*color;
-};
+	float	x;
+	float	y;
+	float	z;
+}	s_point;
 
 typedef struct	map
 {
 	short	*row;
-	short	size;
+	int	size;
 	struct	map	*next;
 }	t_map;
 
@@ -43,7 +42,7 @@ typedef struct	map
 char    *get_next_line(int fd);
 //void    *ft_free(char *line);
 s_mlx	ft_open_window();
-void	isometric(char x, char y, char z, s_mlx mlx, int i);
+void	isometric(s_point a, s_point b, s_mlx mlx);
 int	ft_strcmp(char *s1, char *s2);
 //t_map	*ft_open_file(char *s, int *rows);
 //t_map	*ft_make_map(int fd, int *rows);
