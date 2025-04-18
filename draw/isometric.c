@@ -6,7 +6,7 @@
 /*   By: hamel-yo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 23:43:00 by hamel-yo          #+#    #+#             */
-/*   Updated: 2025/04/18 16:48:22 by hamel-yo         ###   ########.fr       */
+/*   Updated: 2025/04/18 17:22:20 by hamel-yo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_draw_line(s_point a, s_point b, float steps, s_mlx mlx)
 	b.z = b.z / steps;
 	while (i <= steps)
 	{
-		mlx_pixel_put(mlx.init, mlx.win, 500 + a.x, 100 + a.y, 0xFFFFFF);
+		mlx_pixel_put(mlx.init, mlx.win, 500 + a.x, 500 + a.y, 0xFFFFFF);
 		a.x += a.z;
 		a.y += b.z;
 		i++;
@@ -43,11 +43,11 @@ void	isometric(s_point a, s_point b, s_mlx mlx)
 	float	tmp;
 
 	tmp = a.x;
-	a.x = isometric_x(a.x, a.y) * 2;
-	a.y = isometric_y(tmp, a.y, a.z) * 2;
+	a.x = isometric_x(a.x, a.y) * mlx.line;
+	a.y = isometric_y(tmp, a.y, a.z) * mlx.line;
 	tmp = b.x;
-	b.x = isometric_x(b.x, b.y)* 2;
-	b.y = isometric_y(tmp, b.y, b.z) * 2;
+	b.x = isometric_x(b.x, b.y)* mlx.line;
+	b.y = isometric_y(tmp, b.y, b.z) * mlx.line;
 	a.z = b.x - a.x;
 	b.z = b.y - a.y;
 	if (fabs(b.z) > fabs(a.z))

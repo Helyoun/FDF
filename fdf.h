@@ -18,6 +18,7 @@
 
 typedef struct	mlx
 {
+	int	line;
 	int	height;
 	int	width;
 	void	*init;

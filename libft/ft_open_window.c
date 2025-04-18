@@ -6,7 +6,7 @@
 /*   By: hamel-yo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 05:34:00 by hamel-yo          #+#    #+#             */
-/*   Updated: 2025/04/17 18:09:44 by hamel-yo         ###   ########.fr       */
+/*   Updated: 2025/04/18 17:28:38 by hamel-yo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,28 @@ s_mlx	ft_mlxerror()
 	return (mlx);
 }
 
-s_mlx	ft_open_window()
+int	line_size(t_map *map, s_mlx mlx)
+{
+	int	coloms;
+	int	rows;
+
+	coloms = 0;
+	rows = map->size;
+	while (map != NULL)
+	{
+		coloms++;
+		if (map->size > rows)
+			rows = map->size;
+		map = map->next;
+	}
+	coloms = mlx.height * cos(120) / coloms;
+	rows = mlx.width * cos(120) / rows;
+	if (rows > coloms)
+		return (coloms);
+	return (rows);
+}
+
+s_mlx	ft_open_window(t_map *map)
 {
 	s_mlx	mlx;
 
@@ -32,6 +53,7 @@ s_mlx	ft_open_window()
 	mlx.win = mlx_new_window(mlx.init, mlx.width, mlx.height, "FDF");
 	if (mlx.win == NULL)
 		return (ft_mlxerror());
+	mlx.line = line_size(map, mlx);
 	return (mlx);
 }
 

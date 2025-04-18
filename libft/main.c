@@ -6,7 +6,7 @@
 /*   By: hamel-yo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 15:18:21 by hamel-yo          #+#    #+#             */
-/*   Updated: 2025/04/18 16:42:02 by hamel-yo         ###   ########.fr       */
+/*   Updated: 2025/04/18 17:00:52 by hamel-yo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	init_points(s_mlx mlx, t_map *map, int i, int j)
 	a.x = (float)i;
 	a.y = (float)j;
 	a.z = (map->row)[i];
-	if (i < map->size)
+	if (i + 1 < map->size)
 	{
 		b.x = (float)(i + 1);
 		b.y = (float)j;
@@ -45,7 +45,7 @@ void	ft_draw(t_map *map, s_mlx mlx)
 	while (map != NULL)
 	{
 		i = 0;
-		while (i <= map->size)
+		while (i < map->size)
 		{
 			init_points(mlx, map, i, j);
 			i++;
@@ -62,7 +62,7 @@ int	main (int c, char **v)
 	s_mlx	mlx;
 
 	map = openfile(c, v);
-	mlx = ft_open_window();
+	mlx = ft_open_window(map);
 	ft_draw(map, mlx);
 	while(1);
 }
