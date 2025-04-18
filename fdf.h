@@ -33,8 +33,8 @@ typedef struct	point
 
 typedef struct	map
 {
-	short	*row;
-	int	size;
+	char	*row;
+	short	size;
 	struct	map	*next;
 }	t_map;
 

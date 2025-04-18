@@ -6,7 +6,7 @@
 /*   By: hamel-yo <hamel-yo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 03:10:43 by hamel-yo          #+#    #+#             */
-/*   Updated: 2025/04/17 21:50:09 by hamel-yo         ###   ########.fr       */
+/*   Updated: 2025/04/18 16:47:03 by hamel-yo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_map *openfile(int c, char **v);
 t_map	*makemap(int fd);
 t_map	*makenode(char *line);
 int	ft_count_word(char *s, char c);
-short	*ft_makerow(char **sl, short size);
+char	*ft_makerow(char **sl, short size);
 void	*ft_free(void **strs, int i);
 char	*get_next_line(int fd);
 void	*gnlfree(char *line, int i);

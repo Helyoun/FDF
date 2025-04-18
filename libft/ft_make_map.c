@@ -6,31 +6,24 @@
 /*   By: hamel-yo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 06:11:22 by hamel-yo          #+#    #+#             */
-/*   Updated: 2025/04/17 21:50:23 by hamel-yo         ###   ########.fr       */
+/*   Updated: 2025/04/18 16:47:53 by hamel-yo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-short	*ft_makerow(char **sl, short size)
+char	*ft_makerow(char **sl, short size)
 {
-	short	*row;
+	char	*row;
 	int	i;
-	int	nbr;
 
-	row = ft_calloc (sizeof(short) , size);
+	row = ft_calloc (sizeof(char) , size);
 	if (row == NULL)
 		return (row);
 	i = 0;
 	while (i < size)
 	{
-		nbr = ft_atoi(sl[i]);
-		if (nbr > SHORT_MAX)
-			row[i] = SHORT_MAX;
-		else if (nbr < SHORT_MIN)
-			row[i] = SHORT_MIN;
-		else
-			row[i] = (short )nbr;
+		row[i] = ft_atoi(sl[i]);
 		i++;
 	}
 	ft_free((void *)sl, size);
