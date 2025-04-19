@@ -6,18 +6,18 @@
 /*   By: hamel-yo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 06:11:22 by hamel-yo          #+#    #+#             */
-/*   Updated: 2025/04/18 16:47:53 by hamel-yo         ###   ########.fr       */
+/*   Updated: 2025/04/19 15:48:18 by hamel-yo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_makerow(char **sl, short size)
+short	*ft_makerow(char **sl, short size)
 {
-	char	*row;
-	int	i;
+	short	*row;
+	int		i;
 
-	row = ft_calloc (sizeof(char) , size);
+	row = ft_calloc (sizeof(short), size);
 	if (row == NULL)
 		return (row);
 	i = 0;
@@ -51,12 +51,13 @@ t_map	*makemap(int fd)
 {
 	t_map	*tmp;
 	t_map	*map;
-	int	i;
+	int		i;
 	char	*line;
 
 	map = NULL;
 	i = 0;
-	while ((line = get_next_line(fd)) != NULL)
+	line = get_next_line(fd);
+	while (line != NULL)
 	{
 		if (map == NULL)
 			tmp = makenode(line);
@@ -68,14 +69,20 @@ t_map	*makemap(int fd)
 			tmp = tmp->next;
 		i++;
 		free(line);
+		line = get_next_line(fd);
 	}
 	return (map);
 }
 
-t_map *openfile(int c, char **v)
+t_map	*openfile(int c, char **v)
 {
+	int	i;
 	int	fd;
+
 	if (c != 2)
+		return (NULL);
+	i = ft_strlen(v[1]);
+	if (ft_strncmp(v[1], ".fdf", i) != 0)
 		return (NULL);
 	fd = open(v[1], O_RDWR);
 	return (makemap(fd));

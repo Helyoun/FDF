@@ -1,56 +1,72 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hamel-yo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/19 15:24:20 by hamel-yo          #+#    #+#             */
+/*   Updated: 2025/04/19 15:50:55 by hamel-yo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FDF_H
-#define FDF_H
+# define FDF_H
 
-#include <mlx.h>
-#include <unistd.h>
-#include <math.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <fcntl.h>
+# include <mlx.h>
+# include <unistd.h>
+# include <math.h>
+# include <stdlib.h>
+# include <fcntl.h>
 
-#define WIDTH 1920
-#define HEIGHT 1080
-#define LINE 50
+# define WIDTH 1920
+# define HEIGHT 1080
+# define LINE 50
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1337
 # endif
 
-typedef struct	mlx
+typedef struct s_mlx
 {
-	int	line;
-	int	height;
-	int	width;
+	int		line;
+	int		height;
+	int		width;
+	int		bpp;
+	int		line_length;
+	int		endian;
+	char	*addr;
+	void	*img;
 	void	*init;
 	void	*win;
-}	s_mlx;
+}	t_mlx;
 
-typedef struct	point
+typedef struct s_point
 {
 	float	x;
 	float	y;
 	float	z;
-}	s_point;
+}	t_point;
 
-typedef struct	map
+typedef struct s_map
 {
-	char	*row;
-	short	size;
-	struct	map	*next;
+	short			*row;
+	short			size;
+	struct s_map	*next;
 }	t_map;
 
-//int     ft_strlen(char *s);
-char    *get_next_line(int fd);
-//void    *ft_free(char *line);
-s_mlx	ft_open_window();
-void	isometric(s_point a, s_point b, s_mlx mlx);
-int	ft_strcmp(char *s1, char *s2);
-//t_map	*ft_open_file(char *s, int *rows);
-//t_map	*ft_make_map(int fd, int *rows);
-//t_map	*ft_make_node(int fd, t_map **list);
-//void	ft_free_list(t_map **list, void *ptr);
-int	ft_isdigit(int c);
-int	ft_isoprator(int c);
+typedef struct s_close
+{
+	t_map	*map;
+	t_mlx	mlx;
+}	t_close;
 
+float	isometric_x(int x, int y);
+char	*get_next_line(int fd);
+t_mlx	ft_open_window(t_map *map);
+void	isometric(t_point a, t_point b, t_mlx mlx);
+int		ft_strcmp(char *s1, char *s2);
+int		ft_isdigit(int c);
+int		ft_isoprator(int c);
 
 #endif

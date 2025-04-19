@@ -6,7 +6,7 @@
 /*   By: hamel-yo <hamel-yo@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 06:01:28 by hamel-yo          #+#    #+#             */
-/*   Updated: 2025/04/15 06:33:43 by hamel-yo         ###   ########.fr       */
+/*   Updated: 2025/04/19 15:09:48 by hamel-yo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*ft_makestr(char **s, char c)
 
 void	*ft_free(void **strs, int i)
 {
-	char **s;
+	char	**s;
 
 	s = (char **)strs;
 	while (i >= 0)

@@ -6,23 +6,33 @@
 /*   By: hamel-yo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 23:43:00 by hamel-yo          #+#    #+#             */
-/*   Updated: 2025/04/18 17:22:20 by hamel-yo         ###   ########.fr       */
+/*   Updated: 2025/04/19 15:23:35 by hamel-yo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-float	isometric_x(int	x, int	y)
+float	isometric_x(int x, int y)
 {
 	return ((x - y) * cos(120));
 }
 
-float	isometric_y(int	x, int	y, int z)
+float	isometric_y(int x, int y, int z)
 {
 	return ((x + y) * sin(120) - z);
 }
 
-void	ft_draw_line(s_point a, s_point b, float steps, s_mlx mlx)
+void	my_mlx_pixel_put(t_mlx mlx, int x, int y, int color)
+{
+	char	*dst;
+
+	if (x > mlx.width || y > mlx.height || x < 0 || y < 0)
+		return ;
+	dst = mlx.addr + (y * mlx.line_length + x * (mlx.bpp / 8));
+	*(unsigned int *)dst = color;
+}
+
+void	ft_draw_line(t_point a, t_point b, float steps, t_mlx mlx)
 {
 	float	i;
 
@@ -31,14 +41,15 @@ void	ft_draw_line(s_point a, s_point b, float steps, s_mlx mlx)
 	b.z = b.z / steps;
 	while (i <= steps)
 	{
-		mlx_pixel_put(mlx.init, mlx.win, 500 + a.x, 500 + a.y, 0xFFFFFF);
+		my_mlx_pixel_put(mlx, (mlx.width / 3) + a.x,
+			(mlx.height / 10) + a.y, 0xFFFFFF);
 		a.x += a.z;
 		a.y += b.z;
 		i++;
 	}
 }
 
-void	isometric(s_point a, s_point b, s_mlx mlx)
+void	isometric(t_point a, t_point b, t_mlx mlx)
 {
 	float	tmp;
 
@@ -46,7 +57,7 @@ void	isometric(s_point a, s_point b, s_mlx mlx)
 	a.x = isometric_x(a.x, a.y) * mlx.line;
 	a.y = isometric_y(tmp, a.y, a.z) * mlx.line;
 	tmp = b.x;
-	b.x = isometric_x(b.x, b.y)* mlx.line;
+	b.x = isometric_x(b.x, b.y) * mlx.line;
 	b.y = isometric_y(tmp, b.y, b.z) * mlx.line;
 	a.z = b.x - a.x;
 	b.z = b.y - a.y;
