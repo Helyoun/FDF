@@ -6,7 +6,7 @@
 /*   By: hamel-yo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 06:11:22 by hamel-yo          #+#    #+#             */
-/*   Updated: 2025/04/19 15:48:18 by hamel-yo         ###   ########.fr       */
+/*   Updated: 2025/04/19 17:22:09 by hamel-yo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,21 @@ t_map	*openfile(int c, char **v)
 	int	fd;
 
 	if (c != 2)
-		return (NULL);
+	{
+		ft_putstr_fd("I NEED JUST THE FILE NAME\n", 2);
+		exit(1);
+	}
 	i = ft_strlen(v[1]);
 	if (ft_strncmp(v[1], ".fdf", i) != 0)
-		return (NULL);
+	{
+		ft_putstr_fd("ERROR ON FILE NAME\n", 2);
+		exit(1);
+	}
 	fd = open(v[1], O_RDWR);
+	if (fd < 0)
+	{
+		ft_putstr_fd("ERROR ON OPENING THE FILE\n", 2);
+		exit (1);
+	}
 	return (makemap(fd));
 }

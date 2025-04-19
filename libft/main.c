@@ -6,7 +6,7 @@
 /*   By: hamel-yo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 15:18:21 by hamel-yo          #+#    #+#             */
-/*   Updated: 2025/04/19 15:12:47 by hamel-yo         ###   ########.fr       */
+/*   Updated: 2025/04/19 16:48:47 by hamel-yo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,10 @@ int	main(int c, char **v)
 
 	map = openfile(c, v);
 	if (map == NULL)
+	{
+		ft_putstr_fd("ERROR ON READING MAP\n", 2);
 		return (0);
+	}
 	mlx = ft_open_window(map);
 	data.map = map;
 	data.mlx = mlx;
